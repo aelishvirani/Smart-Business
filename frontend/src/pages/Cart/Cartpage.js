@@ -1,90 +1,94 @@
 import React from 'react'
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../actions/cartActions';
 import Empty from '../../components/Empty';
 import Productoncart from '../../components/Productoncart';
+import { useHistory } from 'react-router-dom';
 import './cartcss.css'
-const Cartpage = ({match,location,history}) => {
-    const {id} = match.params;
+const Cartpage = ({ match, location }) => {
+    const { id } = match.params;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart)
-    const {cartItems} = cart
+    const { cartItems } = cart
+    const history = useHistory();
+    useEffect(() => {
 
-    useEffect(()=>{
+        if (id) {
+            dispatch(addToCart(id, qty))
+        }
+    }, [dispatch, id, qty])
 
-        if(id){
-            dispatch(addToCart(id,qty))}
-    },[dispatch,id,qty])
-
-    const checkoutHandler =()=>{
-        history.push('./login?redirect=shipping');
+    const checkoutHandler = () => {
+        // history.push('./login?redirect=shipping');
+        // navigate('./checkout');
+        history.push('/shipping');
     }
 
     return (
         <>
-        <Helmet>
-            <title>Cart</title>
-        </Helmet>
-        {cartItems.length === 0 ? 
-        <Empty />
-        :
-        <div className ='cartfull'>
-        <div className = 'cart'>
-            <h1>Your Cart : {cartItems.length}</h1>
-            <div className ='productsoncart'>
-            {cartItems.map(product =>(
-                    <Productoncart product = {product} />
-                ))}
-            </div>
+            <Helmet>
+                <title>Cart</title>
+            </Helmet>
+            {cartItems.length === 0 ?
+                <Empty />
+                :
+                <div className='cartfull'>
+                    <div className='cart'>
+                        <h1>Your Cart : {cartItems.length}</h1>
+                        <div className='productsoncart'>
+                            {cartItems.map(product => (
+                                <Productoncart product={product} />
+                            ))}
+                        </div>
 
-        </div>
-        <div className = 'totalcart'>
-            <h3>
-            Subtotal ({cartItems.reduce((acc,item)=>acc+item.qty,0)} items) :
+                    </div>
+                    <div className='totalcart'>
+                        <h3>
+                            Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)} items) :
 
-            </h3>
-            <h3 className = 'totalprice'>
-            {cartItems.reduce((acc,item )=>
-                acc + item.qty * item.price,0
+                        </h3>
+                        <h3 className='totalprice'>
+                            {cartItems.reduce((acc, item) =>
+                                acc + item.qty * item.price, 0
 
-             ).toFixed(2)}$
-            </h3>
-            <h3>
-            Delivery :
+                            ).toFixed(2)}<span>&#8377;</span>
+                        </h3>
+                        <h3>
+                            Delivery :
 
-            </h3>
-            <h3 className = 'totalprice'>
-            For free.
+                        </h3>
+                        <h3 className='totalprice'>
+                            For free.
 
-            </h3>
-            <h3>
-            Taxes :
+                        </h3>
+                        <h3>
+                            Taxes :
 
-            </h3>
-            <h3 className = 'totalprice'>
-            -- --.
+                        </h3>
+                        <h3 className='totalprice'>
+                            -- --.
 
-            </h3>
-            <h3>
-            Total :
+                        </h3>
+                        <h3>
+                            Total :
 
-            </h3>
-            <h3 className = 'totalprice'>
-            {cartItems.reduce((acc,item )=>
-                acc + item.qty * item.price,0
+                        </h3>
+                        <h3 className='totalprice'>
+                            {cartItems.reduce((acc, item) =>
+                                acc + item.qty * item.price, 0
 
-             ).toFixed(2)}$
-            </h3>
-            <button className = 'checkoutbtn' disabled={cartItems.length===0} onClick={checkoutHandler}>
-            CHECKOUT
-            </button>
-        </div>
+                            ).toFixed(2)}<span>&#8377;</span>
+                        </h3>
+                        <button className='checkoutbtn' disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                            CHECKOUT
+                        </button>
+                    </div>
 
-        </div>
-        }
+                </div>
+            }
         </>
     )
 }

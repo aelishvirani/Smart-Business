@@ -1,28 +1,28 @@
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import React, { useState } from 'react'
-import { IoCloseOutline } from 'react-icons/io5'
+import { IoCloseOutline } from 'react-icons/io'
 import { MdSearch } from 'react-icons/md'
 
-const Searchnav = ({history}) => {
+const Searchnav = ({ history }) => {
     const [keyword, setkeyword] = useState('')
 
     const Handlesearch = (e) => {
-        if(keyword.trim() && e.which == 13){
+        if (keyword.trim() && e.which == 13) {
             history.push(`/search/${keyword}`)
-        }else{
+        } else {
         }
     }
     return (
         <InputGroup >
-        <Input value = {keyword} onChange = {e=> setkeyword(e.target.value)} bgColor='white' placeholder='Search here ...'  onKeyPress = {Handlesearch} ></Input>
-        <InputRightElement children={ <MdSearch/>} />
+            <Input value={keyword} onChange={e => setkeyword(e.target.value)} bgColor='white' placeholder='Search here ...' onKeyPress={Handlesearch} ></Input>
+            <InputRightElement children={<MdSearch />} />
         </InputGroup>
 
 
-                          
-        
-        
-    
+
+
+
+
 
     )
 }

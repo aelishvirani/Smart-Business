@@ -1,6 +1,8 @@
 import React from 'react'
-import {FiFacebook, AiOutlineHeart, AiOutlineInstagram, IoLogoYoutube} from 'react-icons/all';
-import { Input,Stack } from '@chakra-ui/react'
+import { AiOutlineHeart, AiOutlineInstagram } from 'react-icons/ai';
+import { FiFacebook } from 'react-icons/fi';
+import { IoLogoYoutube } from 'react-icons/io';
+import { Input, Stack } from '@chakra-ui/react'
 import './footercss.css'
 import { Link } from 'react-router-dom';
 const Footer = () => {
@@ -10,10 +12,10 @@ const Footer = () => {
                 <div className="footerCategorie">
                     <h1>Categories</h1>
                     <ul>
-                        <li><Link to = '/shop/?cg=Women'>Women</Link></li>
-                        <li><Link to = '/shop/?cg=Men'>Men</Link></li>
-                        <li><Link to = '/shop/?cg=Shoes'>Shoes</Link></li>
-                        <li><Link to = '/shop/?cg=Watches'>Watches</Link></li>
+                        <li><Link to='/shop/?cg=Women'>Women</Link></li>
+                        <li><Link to='/shop/?cg=Men'>Men</Link></li>
+                        <li><Link to='/shop/?cg=Shoes'>Shoes</Link></li>
+                        <li><Link to='/shop/?cg=Watches'>Watches</Link></li>
                     </ul>
                 </div>
 
@@ -30,15 +32,16 @@ const Footer = () => {
                 <div className="footerGetInTouch">
                     <h1>Get in touch</h1>
                     <ul>
-                        <p>Any questions? Let us know in store at BP 473 Complexe universitaire Al Qods, Oujda 60000 or call us on (+212) 65964665</p>
+                        <p>Any questions? Let us know in store at
+                            or call us on (+91) 7894561236</p>
                         <li className="footerIcons">
                             <FiFacebook size="25" />
                         </li>
-                        <li className="footerIcons">  
+                        <li className="footerIcons">
                             <AiOutlineInstagram size="25" />
                         </li>
                         <li className="footerIcons">
-                            <IoLogoYoutube size="25"/>
+                            <IoLogoYoutube size="25" />
                         </li>
                     </ul>
                 </div>
@@ -48,7 +51,7 @@ const Footer = () => {
                     <ul>
                         <li>
                             <Stack spacing={3}>
-                            <Input variant="flushed" placeholder="email@example.com" size="10" width="200px"/>
+                                <Input variant="flushed" placeholder="email@example.com" size="10" width="200px" />
                             </Stack>
                         </li>
                         <li>
@@ -59,18 +62,17 @@ const Footer = () => {
 
                 <div className="creditsIcons">
                     <ul>
-                        <li><img src="https://i.imgur.com/AHCoUZO.png" className="img1"/></li>
+                        <li><img src="https://i.imgur.com/AHCoUZO.png" className="img1" /></li>
                         <li><img src="https://i.imgur.com/JZRipBg.png" className="img2" /></li>
                         <li><img src="https://i.imgur.com/l8OAGyo.png" className="img3" /></li>
                         <li><img src="https://i.imgur.com/IDHC2iv.png" className="img4" /></li>
                     </ul>
-                    
+
                 </div>
-                
-                <div className="paragraphFooter"><p>Copyright ©2021 All rights reserved | This template is made with ♡ by Developers of ESTO</p>
-                <Link to = '' >Abdessamad bourhjoul</Link>
-                <Link to = ''  >Soufian zaam</Link>
-                <Link to = ''  >Souhail ouabou</Link>
+
+                <div className="paragraphFooter"><p>Copyright ©2021 All rights reserved |</p>
+                    <Link to='' >Aelish Virani</Link>
+                    <Link to=''  >Jenil Kheni</Link>
                 </div>
 
 
