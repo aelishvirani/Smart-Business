@@ -2,27 +2,149 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
 .hr {
   border-bottom: 2px rgb(163, 163, 163) solid;
   width: 300px;
 }
+
 .paid {
   color: rgb(29, 223, 45);
   font-weight: 800;
 }
+
 .notpaid {
   color: brown;
   font-weight: 800;
 }
+
 .paypalbuttons {
   margin-top: 12px;
   z-index: -2;
   width: 400px;
 }
+
 .buttonsp {
   z-index: -2;
 }
+
 .bottominfos {
   width: max-content;
   height: max-content;
+}
+
+
+/* Order.css */
+
+/* Invoice container styles */
+.invoice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h1 {
+  color: #333333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Customer info styles */
+.customer-info {
+  margin-bottom: 20px;
+}
+
+.customer-info p {
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+.customer-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Payment info styles */
+.payment-info {
+  margin-bottom: 20px;
+}
+
+.payment-info p {
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+/* Order items styles */
+.order-items {
+  margin-bottom: 20px;
+}
+
+.order-items ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-items li {
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+.order-items .item-name {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Order summary styles */
+.order-summary {
+  margin-bottom: 20px;
+}
+
+.order-summary p {
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+.order-summary strong {
+  font-weight: bold;
+}
+
+/* Calculations styles */
+.calculations p {
+  margin-bottom: 5px;
+}
+
+/* Generate invoice button styles */
+.generate-invoice {
+  background-color: #5488bf;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.generate-invoice:hover {
+  background-color: #0056b3;
+}
+
+/* Order actions styles */
+.order-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-actions button {
+  border-radius: 5px;
+}
+
+.logo-invoice {
+  width: 54%;
+  margin-left: 80px;
+  margin-right: 80px;
+  font-weight: 500;
 }

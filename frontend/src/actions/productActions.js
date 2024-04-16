@@ -19,6 +19,9 @@ import {
     PRODUCT_CREATE_REVIEW_REQUEST,
     PRODUCT_CREATE_REVIEW_SUCCESS,
     PRODUCT_CREATE_REVIEW_FAIL,
+    TOGGLE_PRODUCT_VISIBILITY_REQUEST,
+    TOGGLE_PRODUCT_VISIBILITY_SUCCESS,
+    TOGGLE_PRODUCT_VISIBILITY_FAIL
 } from '../constants/productConstants'
 export const listProducts = (keyword = '') => async (dispatch) => {
     try {
@@ -40,6 +43,35 @@ export const listProducts = (keyword = '') => async (dispatch) => {
     }
 
 }
+
+export const toggleProductVisibility = (productId, visibility) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: TOGGLE_PRODUCT_VISIBILITY_REQUEST });
+
+        const { userLogin: { userInfo } } = getState();
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        };
+
+        // Send a PUT request to toggle product visibility
+        await axios.put(`/api/products/${productId}/visibility`, { visibility }, config);
+
+        dispatch({ type: TOGGLE_PRODUCT_VISIBILITY_SUCCESS });
+    } catch (error) {
+        dispatch({
+            type: TOGGLE_PRODUCT_VISIBILITY_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
 export const ListproductbyCg = (Cg) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })

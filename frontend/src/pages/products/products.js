@@ -59,7 +59,7 @@ const Products = ({ history, match }) => {
 
         <div className='Users'>
             <Helmet>
-                <title>products</title>
+                <title className='title-name'>products</title>
             </Helmet>
             <h1 className='titlepanel'> Products :</h1>
             {loading || loadingDelete || loadingCreate ? <div className='loading'>
@@ -76,6 +76,7 @@ const Products = ({ history, match }) => {
                                         <Th w='10%'>ID</Th>
                                         <Th w='20%'>Name</Th>
                                         <Th w='20%'>Price</Th>
+                                        <Th w='20%'>Stocks</Th>
                                         <Th w='20%'>Category</Th>
                                         <Th w='10%'></Th>
                                     </Tr>
@@ -85,7 +86,8 @@ const Products = ({ history, match }) => {
                                         <Tr key={product._id}>
                                             <Td>{product._id}</Td>
                                             <Td>{product.name}</Td>
-                                            <Td isNumeric>{product.price}</Td>
+                                            <Td isNumeric>{product.price} &#8377;</Td>
+                                            {product.countInStock ? <Td style={{ color: "Green" }}>{product.countInStock} Items</Td> : <Td style={{ color: "red" }} > No Items</Td>}
                                             <Td>{product.category.join(' | ')}</Td>
                                             <Td>
                                                 <Stack>

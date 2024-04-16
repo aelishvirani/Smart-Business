@@ -64,6 +64,8 @@ const ProductsC = ({ match, history }) => {
         dispatch(Listproductbyprice(From, To))
     }
 
+    const visibleProducts = products.filter(product => product.visibility);
+
     return (
         <>
             <div className='Cgfilter'>
@@ -124,9 +126,9 @@ const ProductsC = ({ match, history }) => {
                     <HashLoader color={"#fff"} loading={loading} size={40} />
                 </div>
                 : error ? <h2>{error} </h2>
-                    : products.length === 0 ?
+                    : visibleProducts.length === 0 ?
                         <h1 className='nothingfound'>Nothing Found !!!</h1> : <div className='cardsProduct'>
-                            {products.map((product) => (
+                            {visibleProducts.map((product) => (
                                 <CardProduct key={product._id} product={product} />
 
                             ))}

@@ -5,16 +5,25 @@ import CgDiv from '../components/CgDiv'
 import ProductsC from '../components/ProductsC'
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
-
-
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import Dashboard from "./Dashboard/Dashboard"
 const Home = () => {
+    const dispatch = useDispatch()
 
+    const userDetails = useSelector(state => state.userDetails)
+
+    const { error, user } = userDetails
+    const userLogin = useSelector(state => state.userLogin)
+
+    const { userInfo } = userLogin
+    console.log(userInfo)
     return (
         <>
             <Helmet>
                 <title>SMART BUSINESS</title>
             </Helmet>
-            <div>
+            {userInfo && userInfo.isAdmin ? <Dashboard /> : <div>
                 <Slider />
                 <div className="cards">
                     <Cardscg title='Women' />
@@ -23,7 +32,8 @@ const Home = () => {
                 </div>
                 <CgDiv />
                 <ProductsC />
-            </div>
+            </div>}
+
         </>
     )
 }

@@ -144,21 +144,21 @@ const Nav = ({ history }) => {
                             Admin
                         </MenuButton>
                         <MenuList>
-                            <MenuItem>
-                                <Link to='/admin/userlist'>
+                            <Link to='/admin/userlist'>
+                                <MenuItem>
                                     Users
-                                </Link>
-                            </MenuItem>
-                            <MenuItem>
-                                <Link to='/admin/productlist'>
+                                </MenuItem>
+                            </Link>
+                            <Link to='/admin/productlist'>
+                                <MenuItem>
                                     Products
-                                </Link>
-                            </MenuItem>
-                            <MenuItem>
-                                <Link to='/admin/orderlist'>
+                                </MenuItem>
+                            </Link>
+                            <Link to='/admin/orderlist'>
+                                <MenuItem>
                                     Orders
-                                </Link>
-                            </MenuItem>
+                                </MenuItem>
+                            </Link>
                         </MenuList>
 
                     </Menu>

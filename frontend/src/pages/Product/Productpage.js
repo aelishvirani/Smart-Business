@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import Rating from '../../components/Rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet';
-
-import { listProductDetails, createproductReview } from '../../actions/productActions'
+import CardProduct from '../../components/CardProduct'
+import { listProductDetails, createproductReview, listProducts } from '../../actions/productActions'
 import { AiFillTwitterCircle, AiFillInstagram, AiFillShop } from "react-icons/ai"
 import { IoLogoFacebook } from "react-icons/io"
 import { MdDoNotDisturb } from "react-icons/md"
@@ -16,6 +16,7 @@ const Productpage = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const [rating, setrating] = useState(0)
   const [comment, setcomment] = useState('')
+  const [recommendations, setRecommendations] = useState([]);
 
   const imgs = document.querySelectorAll('.img-select a');
   const imgShowcase = useRef(null);
@@ -28,7 +29,7 @@ const Productpage = ({ history, match }) => {
   const { userInfo } = userLogin
   const productReviewCreate = useSelector(state => state.productReviewCreate)
   const { success: successProductReview, error: errorProductReview, } = productReviewCreate
-
+  const [userId, setUserId] = useState(null);
 
   imgBtns.forEach((imgItem) => {
     imgItem.addEventListener('click', (event) => {
@@ -46,29 +47,65 @@ const Productpage = ({ history, match }) => {
   }
 
 
+  // useEffect(() => {
+  //   if (successProductReview) {
+  //     alert('Review Submitted!')
+  //     setrating(0)
+  //     setcomment('')
+  //     dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+
+  //   }
+  //   dispatch(listProductDetails(match.params.id))
+
+  // }
+  //   , [dispatch, match, successProductReview])
+
+  // const submithanlder = () => {
+  //   // dispatch(createproductReview(match.params.id, { rating, comment }))
+  //   if (userInfo) {
+  //     dispatch(createproductReview(match.params.id, {
+  //       rating,
+  //       comment,
+  //       user: userInfo._id // Assuming userInfo contains the user ID
+  //     }));
+  //   }
+  // }
+
   useEffect(() => {
-    if (successProductReview) {
-      alert('Review Submitted!')
-      setrating(0)
-      setcomment('')
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
-
-    }
-    dispatch(listProductDetails(match.params.id))
-
-  }
-    , [dispatch, match, successProductReview])
-
-  const submithanlder = () => {
-    // dispatch(createproductReview(match.params.id, { rating, comment }))
     if (userInfo) {
+      dispatch(listProducts({ category: product.category[0], limit: 5 }))
+        .then((data) => {
+          setRecommendations(data);
+        });
+    }
+  }, [dispatch, product.category, userInfo]);
+
+
+  useEffect(() => {
+    // Update user ID state if userInfo is available
+    if (userInfo) {
+      setUserId(userInfo._id);
+    }
+    console.log(userInfo)
+    console.log(match.params.id)
+    // Dispatch action to fetch product details
+    dispatch(listProductDetails(match.params.id));
+  }, [dispatch, match, userInfo]);
+
+
+  // const visibleProducts = productDetails.filter(product => product.visibility);
+
+  // Submit review handler
+  const submithanlder = () => {
+    if (userId) {
+      // Dispatch action to create product review
       dispatch(createproductReview(match.params.id, {
         rating,
         comment,
-        user: userInfo._id // Assuming userInfo contains the user ID
+        user: userId // Pass user ID
       }));
     }
-  }
+  };
   //Handler of button add to cart
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
@@ -193,22 +230,47 @@ const Productpage = ({ history, match }) => {
 
           </div>
         }
+
+        {/* {visibleProducts.length === 0 ?
+          <h1 className='nothingfound'>Nothing Found !!!</h1> : <div className='cardsProduct'>
+            {visibleProducts.map((product) => (
+              <CardProduct key={product._id} product={product} />
+
+            ))} */}
+
+        {recommendations && recommendations.length > 0 && (
+          <div className="recommendations">
+            <h2>Recommendations</h2>
+            <div className="recommendation-list">
+              {recommendations.map((product) => (
+                <div className="recommendation-item" key={product._id}>
+                  <Link to={`/product/${product._id}`}>
+                    <Image src={product.image} alt={product.name} />
+                    <h3>{product.name}</h3>
+                    <Rating value={product.rating} text={`${product.numReviews} reviews`} />
+                    <p>Price: &#8377;{product.price}</p>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+
         <div className='REVIEWS'>
           <h1>Reviews :</h1>
-          {product.reviews.length === 0 && <h2>NO REVIEWS</h2>}
+          {console.log(product)}
+          {product && product.reviews && product.reviews.length === 0 && <h2>NO REVIEWS</h2>}
           <div>
-            {product.reviews.map(review => (
-              <div className='review'>
+            {product && product.reviews && product.reviews.map(review => (
+              <div className='review' key={review._id}>
                 <h4>{review.name}</h4>
                 <div className='Ratingreview'>
                   <Rating value={review.rating} />
-
                 </div>
                 <p className='commentreview'>{review.comment}</p>
                 <p className='datereview'>{review.createdAt.substring(0, 10)}</p>
-
               </div>
-
             ))}
             <div className='createreview'>
               <h1>Create New Review :</h1>
@@ -226,20 +288,16 @@ const Productpage = ({ history, match }) => {
                   <FormLabel>Comment :</FormLabel>
                   <Textarea onChange={(e) => setcomment(e.target.value)} placeholder='Leave Comment here :' />
                   <Button colorScheme='blue' onClick={submithanlder}>Submit</Button>
-
-
                 </FormControl>
-
-              ) :
+              ) : (
                 <>
                   Please <Link to='/login'>Sign In</Link> To write a review.
                 </>
-
-              }
-
+              )}
             </div>
           </div>
         </div>
+
       </div>
     </>
 

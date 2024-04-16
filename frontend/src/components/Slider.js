@@ -54,7 +54,7 @@ const Slider = () => {
     <div className='slider'>
       {SliderData.map((slide, index) => {
         return (
-          <div key={index} className={index === current ? 'slide current' : 'slide'}>
+          <div key={index} className={index === current ? 'slide current' : 'slide'} style={{ "border": "2px solid black" }}>
             <h1 className='titleslider'>{slide.title}</h1>
             <h3 className='subtitleslider'>{slide.subtitle}</h3>
             <div className='content'> <Link to='/Shop'> <ShopNowBtn /></Link>  </div>

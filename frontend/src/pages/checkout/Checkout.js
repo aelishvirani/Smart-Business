@@ -23,6 +23,7 @@ const Checkout = ({ history }) => {
     const [carddetails, setcarddetails] = useState(true)
     const handleorder = (e) => {
         e.preventDefault()
+        console.log(country)
         dispatch(saveAddressshipping({ address, city, postalCode, country }))
         dispatch(savepaymentmethod(Payment))
         history.push('/placeorder')
@@ -50,10 +51,10 @@ const Checkout = ({ history }) => {
                             <Stack spacing={3}>
 
                                 <Select variant="flushed" onChange={(e) => setCountry(e.target.value)} >
-                                    <option value="Maroc">India</option>
-                                    <option value="Algerie">USA</option>
-                                    <option value="France">Canada</option>
-                                    <option value="Espagne">Germany</option>
+                                    <option value="India">India</option>
+                                    <option value="USA">USA</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Germany">Germany</option>
                                 </Select>
 
                             </Stack>

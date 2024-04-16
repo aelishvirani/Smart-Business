@@ -126,7 +126,7 @@ const ProfileScreen = ({ location, history }) => {
       <div className="containera">
 
         <div className="imga">
-          <Image src={addUs} />
+          {/* <Image src={addUs} /> */}
         </div>
         <div className='rightinfos'>
           <div className='showbtn' onClick={() => setShowOrders(!ShowOrders)}>{ShowOrders ? 'Show my infos' : 'Show my orders'} <IoIosArrowDown /></div>
@@ -226,10 +226,12 @@ const ProfileScreen = ({ location, history }) => {
                       {orders.map(order => (
                         <Tr key={order._id}>
                           <Td>{order._id}</Td>
-                          <Td>{order.createdAt.substring(0, 10)}</Td>
+
+                          <Td>{order.createdAt ? order.createdAt.substring(0, 10) : ''}</Td>
                           <Td>{order.totalPrice}</Td>
-                          <Td>{order.isPaid ? order.paidAt.substring(0, 10) : 'Not Paid Yet'}</Td>
-                          <Td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'Not Yet'}</Td>
+                          <Td>{order.isPaid ? (order.paidAt ? order.paidAt.substring(0, 10) : 'Not Paid Yet') : ''}</Td>
+                          <Td>{order.isDelivered ? (order.deliveredAt ? order.deliveredAt.substring(0, 10) : 'Not Yet') : ''}</Td>
+
                           <Td>
                             <Link to={`/order/${order._id}`}>
                               <Button size="xs">DETAILS</Button>

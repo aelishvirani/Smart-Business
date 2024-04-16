@@ -73,7 +73,7 @@ const LoginScreen = ({ location, history }) => {
       <div className="containera">
 
         <div className="imga">
-          <Image src={login_svg} />
+          {/* <Image src={login_svg} /> */}
         </div>
         <div className="login-content">
           <form onSubmit={submitHandler}>

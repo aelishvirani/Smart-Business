@@ -32,7 +32,7 @@ const Footer = () => {
                 <div className="footerGetInTouch">
                     <h1>Get in touch</h1>
                     <ul>
-                        <p>Any questions? Let us know in store at
+                        <p>Any questions? Let us know on email
                             or call us on (+91) 7894561236</p>
                         <li className="footerIcons">
                             <FiFacebook size="25" />
@@ -46,19 +46,6 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <div className="footerNews">
-                    <h1>Newsletter</h1>
-                    <ul>
-                        <li>
-                            <Stack spacing={3}>
-                                <Input variant="flushed" placeholder="email@example.com" size="10" width="200px" />
-                            </Stack>
-                        </li>
-                        <li>
-                            <button className="footerBtn">Subscribe</button>
-                        </li>
-                    </ul>
-                </div>
 
                 <div className="creditsIcons">
                     <ul>

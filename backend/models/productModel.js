@@ -2,67 +2,76 @@ import mongoose from 'mongoose'
 
 
 const reviewSchema = mongoose.Schema({
-    name : { type: String, required: true},
-    rating : { type: Number, required: true},
-    comment : { type: String, required: true},
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref : 'User' //relation betwen the review and the user
+        ref: 'User' //relation betwen the review and the user
     },
-},{ 
+}, {
     timestamps: true
 })
 const productSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref : 'User' //relation betwen the product and yhe user
+        ref: 'User' //relation betwen the product and yhe user
     },
-    name:{
-        type : String,
+    name: {
+        type: String,
         required: true
     },
-    images:[{
-        type : String,
+    images: [{
+        type: String,
     }],
-    description:{
-        type : String,
+    description: {
+        type: String,
         required: true
     },
-    category:[{
-        type : String,
-        required: true
-    }],
-    sizes:[{
-        type : String,
+    category: [{
+        type: String,
         required: true
     }],
-    reviews: [reviewSchema],
-    rating:{
-        type : Number,
+    sizes: [{
+        type: String,
+        required: true
+    }],
+    reviews: [{ reviewSchema }],
+    rating: {
+        type: Number,
         required: true,
         default: 0
     },
-    numReviews:{
-        type : Number,
+    numReviews: {
+        type: Number,
         required: true,
         default: 0
     },
-    price:{
-        type : Number,
+    price: {
+        type: Number,
         required: true,
         default: 0
     },
-    countInStock:{
-        type : Number,
+    countInStock: {
+        type: Number,
         required: true,
         default: 0
     },
-},{
-    timestamps: true
-}) 
+    visibility: {
+        type: Boolean,
+        default: true
 
-const Product = mongoose.model('Product', productSchema)  
+    },
+    sales: {
+        type: Number,
+        default: 0
+    },
+}, {
+    timestamps: true
+})
+
+const Product = mongoose.model('Product', productSchema)
 
 export default Product

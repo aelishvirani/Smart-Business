@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,6 +29,9 @@ const Editproduct = ({ match, history }) => {
     const [Watchesselected, setWatchesselected] = useState(false)
     const [Shoesselected, setShoesselected] = useState(false)
     const [Jacketselected, setJacketselected] = useState(false)
+
+    const [additionalSizes, setAdditionalSizes] = useState([]); // State for additional sizes
+    const [newSize, setNewSize] = useState(''); // State for input value of new size
 
     const [Sselected, setSselected] = useState(false)
     const [Mselected, setMselected] = useState(false)
@@ -108,7 +112,7 @@ const Editproduct = ({ match, history }) => {
             price,
             Images,
             category,
-            sizes,
+            sizes: [...sizes, ...additionalSizes],
             countInStock,
             description
 
@@ -142,6 +146,16 @@ const Editproduct = ({ match, history }) => {
 
         }
     }
+    const handleNewSizeChange = (e) => {
+        setNewSize(e.target.value);
+    };
+
+    const handleAddSize = () => {
+        if (newSize.trim() !== '') {
+            setAdditionalSizes([...additionalSizes, newSize.trim()]);
+            setNewSize(''); // Clear the input field after adding size
+        }
+    };
 
     return (
         <div className='Edituser'>
@@ -242,6 +256,16 @@ const Editproduct = ({ match, history }) => {
                                                 <Checkbox onChange={() => { checkboxhandler('M'); setMselected(!Mselected) }} isChecked={Mselected}>M </Checkbox>
                                                 <Checkbox onChange={() => { checkboxhandler('L'); setLselected(!Lselected) }} isChecked={Lselected}>L </Checkbox>
                                                 <Checkbox onChange={() => { checkboxhandler('XL'); setXLselected(!XLselected) }} isChecked={XLselected}>XL </Checkbox>
+                                                {/* {sizes.map((size, index) => (
+                                                    <Checkbox key={index} onChange={() => { checkboxhandler(size); }} isChecked={size}>{size}</Checkbox>
+                                                ))} */}
+                                                {additionalSizes.map((size, index) => (
+                                                    <Checkbox key={index + sizes.length} isChecked>{size}</Checkbox>
+                                                ))}
+                                                <InputGroup>
+                                                    <Input type="text" value={newSize} onChange={handleNewSizeChange} placeholder="Add more sizes" />
+                                                    <button type="button" onClick={handleAddSize}>Add Size</button>
+                                                </InputGroup>
                                             </Stack>
                                         </div>
                                     </div>

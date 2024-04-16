@@ -20,6 +20,18 @@ const Placeorder = ({ history }) => {
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
     const Placeorderhanlder = () => {
+
+
+        // Check if shipping address is present
+        const hasShippingAddress = Object.keys(cart.shippingAddress).length !== 0;
+
+
+        // Check if shipping address is set before placing the order
+        if (!hasShippingAddress) {
+            alert('Please provide your shipping address');
+            return;
+        }
+
         dispatch(CreateOrder({
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,

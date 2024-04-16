@@ -27,9 +27,9 @@ const Contactus = () => {
                 <title>Contact</title>
             </Helmet>
             <div className="headerContact">
-                <Image className="imageContact" src='https://i.imgur.com/7rwaigw.jpg' alt="contactImage" objectFit="cover" />
+                {/* <Image className="imageContact" src='https://i.imgur.com/7rwaigw.jpg' alt="contactImage" objectFit="cover" /> */}
                 <div className="text">
-                    <h2>Contact</h2>
+                    {/* <h2>Contact</h2> */}
                 </div>
 
             </div>

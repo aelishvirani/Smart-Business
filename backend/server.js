@@ -1,11 +1,14 @@
 import path from "path";
 import express from "express";
+import cors from 'cors';
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import morgan from "morgan";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
@@ -20,10 +23,13 @@ if (process.env.NODE_ENV === "developement") {
 }
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
@@ -43,13 +49,15 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(notFound);
 app.use(errorHandler);
-
 const PORT = process.env.PORT || 5000;
-app.listen(
-  PORT,
-  console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
-  )
-);
 
+try {
+  app.listen(PORT, () =>
+    console.log(
+      `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+    )
+  );
+} catch (error) {
+  console.error(`Error starting server: ${error.message}`);
+}
 //runingin
