@@ -46,7 +46,7 @@ const Users = ({ history }) => {
             <Helmet>
                 <title>Users</title>
             </Helmet>
-            <h1 className='titlepanel'> Users :</h1>
+            <h1 className='titlepanel' style={{ marginTop: "-88px" }}> Users :</h1>
             {loading ? <div className='loading'>
                 <HashLoader color={"#1e1e2c"} loading={loading} size={40} />
             </div> :

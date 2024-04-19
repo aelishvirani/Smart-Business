@@ -61,7 +61,7 @@ const Products = ({ history, match }) => {
             <Helmet>
                 <title className='title-name'>products</title>
             </Helmet>
-            <h1 className='titlepanel'> Products :</h1>
+            <h1 className='titlepanel' style={{ marginTop: "-88px" }}> Products :</h1>
             {loading || loadingDelete || loadingCreate ? <div className='loading'>
                 <HashLoader color={"#1e1e2c"} loading={loading || loadingDelete || loadingCreate} size={40} />
             </div> :

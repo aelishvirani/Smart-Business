@@ -18,7 +18,7 @@ const Orders = ({ history }) => {
     const location = useLocation(); // Initialize useLocation hook
     const queryParams = new URLSearchParams(location.search); // Retrieve query parameters
     const deliveredParam = queryParams.get('delivered'); // Check if 'delivered' query parameter exists
-
+    const [stylen, setStylen] = useState(`marginTop : "-88px"`)
 
     const [filters, setFilters] = useState({
         paid: false,
@@ -58,9 +58,9 @@ const Orders = ({ history }) => {
     return (
         <div className='Users'>
             <Helmet>
-                <title>Orders</title>
+                <title>Orders</title>px
             </Helmet>
-            <h1 className='titlepanel'> Orders :</h1>
+            <h1 className='titlepanel' style={{ marginTop: "-88px" }}> Orders :</h1>
 
             {/* filters */}
             <div style={{ marginBottom: '20px' }}>
@@ -68,52 +68,54 @@ const Orders = ({ history }) => {
                 <Checkbox isChecked={filters.delivered} name="delivered" onChange={handleFilterChange}>Delivered</Checkbox>
             </div>
 
-            {loading ? (
-                <div className='loading'>
-                    <HashLoader color={"#1e1e2c"} loading={loading} size={40} />
-                </div>
-            ) : error ? (
-                <h1>Error: {error}</h1>
-            ) : (
-                <Box overflowX='auto'>
-                    <Table className='tableusers' variant="striped">
-                        <Thead>
-                            <Tr>
-                                <Th textAlign='center' w='20%'>ID</Th>
-                                <Th textAlign='center' w='10%'>User</Th>
-                                <Th textAlign='center' w='15%'>Date</Th>
-                                <Th textAlign='center' w='10%'>TOTAL</Th>
-                                <Th textAlign='center' w='10%'>PAID</Th>
-                                <Th textAlign='center' w='10%'>Delivered</Th>
-                                <Th textAlign='center' w='10%'>Actions</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {filteredOrders.map(order => (
-                                <Tr key={order._id}>
-                                    <Td>{order._id}</Td>
-                                    <Td>{order.user && order.user.name}</Td>
-                                    <Td>{order.createdAt ? order.createdAt.substring(0, 10) : ''}</Td>
-                                    <Td>{order.totalPrice} &#8377;</Td>
-                                    <Td>{order.isPaid ? <div className='paid'>{order.paidAt ? order.paidAt.substring(0, 10) : 'Yes'}</div> : <div className='notpaid'>NO</div>}</Td>
-                                    <Td>{order.isDelivered ? <div className='paid'>{order.deliveredAt ? order.deliveredAt.substring(0, 10) : ''}</div> : <div className='notpaid'>NO</div>}</Td>
-                                    <Td>
-                                        {!order.isDelivered && (
-                                            <Button style={{ background: "rgb(39, 145, 15)", color: "white", marginBottom: "10px" }} size="xs" onClick={() => markAsDelivered(order._id)}>Mark as Delivered</Button>
-                                        )}
-                                        <Stack>
-                                            <Link to={`/order/${order._id}`}>
-                                                <Button leftIcon={<AiOutlineEdit size='16' />} colorScheme='blue' size="xs">Details</Button>
-                                            </Link>
-                                        </Stack>
-                                    </Td>
+            {
+                loading ? (
+                    <div className='loading'>
+                        <HashLoader color={"#1e1e2c"} loading={loading} size={40} />
+                    </div>
+                ) : error ? (
+                    <h1>Error: {error}</h1>
+                ) : (
+                    <Box overflowX='auto'>
+                        <Table className='tableusers' variant="striped">
+                            <Thead>
+                                <Tr>
+                                    <Th textAlign='center' w='20%'>ID</Th>
+                                    <Th textAlign='center' w='10%'>User</Th>
+                                    <Th textAlign='center' w='15%'>Date</Th>
+                                    <Th textAlign='center' w='10%'>TOTAL</Th>
+                                    <Th textAlign='center' w='10%'>PAID</Th>
+                                    <Th textAlign='center' w='10%'>Delivered</Th>
+                                    <Th textAlign='center' w='10%'>Actions</Th>
                                 </Tr>
-                            ))}
-                        </Tbody>
-                    </Table>
-                </Box>
-            )}
-        </div>
+                            </Thead>
+                            <Tbody>
+                                {filteredOrders.map(order => (
+                                    <Tr key={order._id}>
+                                        <Td>{order._id}</Td>
+                                        <Td>{order.user && order.user.name}</Td>
+                                        <Td>{order.createdAt ? order.createdAt.substring(0, 10) : ''}</Td>
+                                        <Td>{order.totalPrice} &#8377;</Td>
+                                        <Td>{order.isPaid ? <div className='paid'>{order.paidAt ? order.paidAt.substring(0, 10) : 'Yes'}</div> : <div className='notpaid'>NO</div>}</Td>
+                                        <Td>{order.isDelivered ? <div className='paid'>{order.deliveredAt ? order.deliveredAt.substring(0, 10) : ''}</div> : <div className='notpaid'>NO</div>}</Td>
+                                        <Td>
+                                            {!order.isDelivered && (
+                                                <Button style={{ background: "rgb(39, 145, 15)", color: "white", marginBottom: "10px" }} size="xs" onClick={() => markAsDelivered(order._id)}>Mark as Delivered</Button>
+                                            )}
+                                            <Stack>
+                                                <Link to={`/order/${order._id}`}>
+                                                    <Button leftIcon={<AiOutlineEdit size='16' />} colorScheme='blue' size="xs">Details</Button>
+                                                </Link>
+                                            </Stack>
+                                        </Td>
+                                    </Tr>
+                                ))}
+                            </Tbody>
+                        </Table>
+                    </Box>
+                )
+            }
+        </div >
     );
 }
 

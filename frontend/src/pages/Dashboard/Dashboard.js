@@ -72,15 +72,15 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard'>
-            <h1>Hello world</h1>
+            <p className='dashboardheading'>Dashboard :</p>
 
             {/* top heading card */}
             <div className='allcard'>
-                <div className='cardstyle' onClick={() => handleCardClick('/admin/orderlist')}>
+                <div className='cardstyle' style={{ backgroundColor: "rgb(182, 204, 240)" }} onClick={() => handleCardClick('/admin/orderlist')}>
                     <h1 className='cardvalue'>{totalOrdersCount}</h1>
                     <p className='cardname'>Total orders</p>
                 </div>
-                <div className='cardstyle' onClick={() => handleCardClick('/admin/orderlist?delivered=true')}>
+                <div className='cardstyle' style={{ backgroundColor: "rgb(211, 242, 194)" }} onClick={() => handleCardClick('/admin/orderlist?delivered=true')}>
                     <h1 className='cardvalue'>{deliveredOrdersCount}</h1>
                     <p className='cardname'>Delivered Orders</p>
                 </div>
@@ -88,18 +88,19 @@ const Dashboard = () => {
                     <h1 className='cardvalue'>{undeliveredOrdersCount}</h1>
                     <p className='cardname'>Undelivered Orders</p>
                 </div> */}
-                <div className='cardstyle'>
-                    <h1 className='cardvalue'>{totalRevenue}</h1>
+                <div className='cardstyle' style={{ backgroundColor: "rgb(234, 235, 169)" }}>
+                    <h1 className='cardvalue'>{totalRevenue} &#8377;</h1>
                     <p className='cardname'>Revenue</p>
                 </div>
-                <div className='cardstyle' onClick={() => handleCardClick('/admin/userlist')}>
+                <div className='cardstyle' style={{ backgroundColor: "rgb(169, 233, 235)" }} onClick={() => handleCardClick('/admin/userlist')}>
                     <h1 className='cardvalue'>{totalUsersCount}</h1>
                     <p className='cardname'>Total Users</p>
                 </div>
             </div>
-
+            <br /><br />
             <div>
                 <h1 className='topselling'>Top Selling Products</h1>
+                <br />
                 <Table variant="striped">
                     <Thead>
                         <Tr>

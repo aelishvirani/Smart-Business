@@ -1,3 +1,14 @@
+.inventory {
+    font-size: x-large;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    font-weight: 700;
+}
+
 .ADDBUTTON {
     margin: 10px 45%;
+}
+
+.inventoryProduct {
+    margin-left: 10px;
 }

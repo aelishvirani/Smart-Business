@@ -4,6 +4,7 @@ import { toggleProductVisibility, listProducts } from '../../actions/productActi
 import { Button, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { color } from 'style-value-types';
 import { Helmet } from 'react-helmet';
+import './inventory.css'
 
 const Inventory = () => {
     const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const Inventory = () => {
             <Helmet>
                 <title>Inventory</title>
             </Helmet>
-            <h1 className='titlepanel'> Inventory :</h1>
-            <div className='Users'>
+            <h1 className='inventory' > Inventory :</h1>
+            <div className='inventoryProduct'>
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (

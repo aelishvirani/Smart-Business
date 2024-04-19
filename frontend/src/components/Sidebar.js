@@ -76,8 +76,8 @@ const Sidebar = () => {
                             onClick={showSidebar}
                         />
                     </NavIcon>
-                    <h1 className="logo">
-                        Smart Business
+                    <h1 className="logo dashhead" style={{ fontWeight: "400" }}>
+                        <b>SMART BUSINESS</b>
                     </h1>
 
                     {userInfo ? (<div className="ic_sett_dis" style={{ position: "relative", right: "-38%  " }}><Link to="/profile"><CgProfile size="25" className="settingIcon" /></Link>

@@ -2,6 +2,7 @@
 
 import React from "react";
 import * as FaIcons from "react-icons/fa";
+import * as Fa6Icons from "react-icons/fa6";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as RiIcons from "react-icons/ri";
@@ -14,15 +15,16 @@ export const SidebarData = [
         title: "Dashboard",
         path: "/",
         icon: <RiIcons.RiDashboardLine />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
+    },
+    {
+        title: "Shop",
+        path: "/shop",
+        icon: <Fa6Icons.FaBagShopping />,
     },
     {
         title: "Orders",
         path: "/admin/orderlist",
         icon: <RiIcons.RiListUnordered />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
     },
     {
         title: "Users",

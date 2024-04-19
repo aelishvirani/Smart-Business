@@ -4,6 +4,7 @@
   "main": "server.js",
   "type": "module",
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.0",
     "ansi-styles": "^3.2.1",
     "aria-hidden": "^1.1.2",
     "axios": "^0.21.1",
