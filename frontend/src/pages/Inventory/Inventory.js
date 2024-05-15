@@ -17,6 +17,7 @@ const Inventory = () => {
 
     const toggleVisibilityHandler = (productId, visibility) => {
         dispatch(toggleProductVisibility(productId, visibility));
+        window.location.reload();
     };
 
     return (

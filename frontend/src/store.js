@@ -51,7 +51,7 @@ import { CreateOrderReducers, OrderDeliverreducer, OrderDetailsreducer, OrderLis
 
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 
-import { dashboardReducer, revenueReducer } from './reducers/dashboardReducers'
+// import { dashboardReducer, revenueReducer } from './reducers/dashboardReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -74,8 +74,8 @@ const reducer = combineReducers({
     orderMylist: OrderListMyreducer,
     orderList: OrderListreducer,
     orderDeliver: OrderDeliverreducer,
-    dashboard: dashboardReducer,
-    revenue: revenueReducer
+    // dashboard: dashboardReducer,
+    // revenue: revenueReducer
 
 
 })

@@ -100,11 +100,11 @@ const LoginScreen = ({ location, history }) => {
 
             <input type="submit" className="btna" value="Login" />
 
-            <div className='div-forgot'>
+            {/* <div className='div-forgot'>
               <span>Forgot </span>
               <Link className='text-forgot' to='/forgot'>Password? </Link>
 
-            </div>
+            </div> */}
             <Link className="createAcc" to={redirect ? `/register?redirect=${redirect}` : '/register'}>Create your Account <BsArrowRight size="25" /></Link>
 
           </form>
